@@ -12,4 +12,11 @@ return [
 	'log in'                                   => 'შესვლა',
 	'don’t have and account?'                  => 'არ გაქვთ ანგარიში?',
 	'sign up for free'                         => 'დარეგისტრირდით უფასოდ',
+	'welcome to coronatime'                    => 'კეთილი იყოს თქვენი მობრძანება კორონათაიმზე',
+	'please enter required info to sign up'    => 'რეგისტრაციისთვის შეიყვანეთ მოთხოვნილი ინფორმაცია',
+	'enter unique username'                    => 'შეიყვანეთ მომხმარებლის სახელი',
+	'email'                                    => 'ელ-ფოსტა',
+	'enter your email'                         => 'შეიყვანეთ ელ-ფოსტა',
+	'repeat password'                          => 'გაიმეორეთ პაროლი',
+	'sign up'                                  => 'რეგისტრაცია',
 ];

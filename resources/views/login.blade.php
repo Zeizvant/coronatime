@@ -4,15 +4,15 @@
         <p class="text-base md:text-xl font-normal main-grey mb-6">{{ __('forms.welcome back! please enter your details') }}</p>
         <form action="POST" class="flex flex-col gap-6">
             <div class="flex flex-col gap-2">
-                <label>
+                <label for="username">
                     <span class="block font-bold text-sm md:text-base">{{ __('forms.username') }}</span>
-                    <input type="text" class="mt-1 px-6 py-3 font-normal md:text-base bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1" placeholder="{{ __('forms.enter unique username or email') }}"/>
+                    <input id="username" name="username" type="text" class="mt-1 px-6 py-3 font-normal md:text-base bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1" placeholder="{{ __('forms.enter unique username or email') }}"/>
                 </label>
             </div>
             <div class="flex flex-col gap-2">
-                <label>
+                <label for="password">
                     <span class="block font-bold text-sm md:text-base">{{ __('forms.password') }}</span>
-                    <input type="password" class="mt-1 px-6 py-3 font-normal md:text-base bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1" placeholder="{{ __('forms.fill in password') }}"/>
+                    <input id="password" name="password" type="password" class="mt-1 px-6 py-3 font-normal md:text-base bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-sm focus:ring-1" placeholder="{{ __('forms.fill in password') }}"/>
                 </label>
             </div>
             <div class="flex justify-between items-center">
