@@ -22,7 +22,7 @@
                 </label>
                 <a href="#" class="text-sm md:text-base font-semibold text-[#2029F3]">{{ __('forms.forgot password?') }}</a>
             </div>
-            <input  type="submit" class="h-[56px] cursor-pointer rounded-lg uppercase text-sm md:text-base font-black text-white main-green-bg" value="{{ __('forms.log in') }}"/>
+            <x-form-button text="{{ __('forms.log in') }}"></x-form-button>
             <p class="text-sm md:text-base text-center font-normal ">{{ __('forms.don’t have and account?') }} <a href="#" class="font-semibold">{{ __('forms.sign up for free') }}</a></p>
         </form>
     </div>
