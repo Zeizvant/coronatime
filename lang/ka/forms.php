@@ -19,4 +19,7 @@ return [
 	'enter your email'                         => 'შეიყვანეთ ელ-ფოსტა',
 	'repeat password'                          => 'გაიმეორეთ პაროლი',
 	'sign up'                                  => 'რეგისტრაცია',
+	'reset password'                           => 'პაროლის აღდგენა',
+	'enter new password'                       => 'შეიყვანეთ ახალი პაროლი',
+	'new password'                             => 'ახალი პაროლი',
 ];

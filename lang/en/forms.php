@@ -20,4 +20,6 @@ return [
 	'repeat password'                          => 'Repeat password',
 	'sign up'                                  => 'Sign up',
 	'reset password'                           => 'Reset Password',
+	'enter new password'                       => 'Enter new password',
+	'new password'                             => 'New password',
 ];

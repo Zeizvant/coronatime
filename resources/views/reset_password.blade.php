@@ -1,6 +1,6 @@
 <x-blank_layout>
     <div>
-        <h2 class="font-black text-xl md:text-2xl main-dark mb-2 md:mb-4">{{ __('forms.reset password') }}</h2>
+        <h2 class="text-center font-black text-xl md:text-2xl main-dark mb-10 md:mb-14">{{ __('forms.reset password') }}</h2>
         <form action="POST" class="flex flex-col justify-between md:justify-start md:gap-14 h-[500px] gap-6">
             <div class="flex flex-col gap-2">
                 <label for="password flex flex-col">

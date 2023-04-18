@@ -22,3 +22,6 @@ Route::get('/register', function () {
 Route::get('/reset', function () {
 	return view('reset_password');
 });
+Route::get('/new-password', function () {
+	return view('new_password');
+});
