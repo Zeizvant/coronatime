@@ -19,3 +19,6 @@ Route::get('/login', function () {
 Route::get('/register', function () {
 	return view('register');
 });
+Route::get('/reset', function () {
+	return view('reset_password');
+});

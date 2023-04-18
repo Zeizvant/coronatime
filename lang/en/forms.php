@@ -19,4 +19,5 @@ return [
 	'enter your email'                         => 'Enter your email',
 	'repeat password'                          => 'Repeat password',
 	'sign up'                                  => 'Sign up',
+	'reset password'                           => 'Reset Password',
 ];
