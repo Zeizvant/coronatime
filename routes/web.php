@@ -25,3 +25,12 @@ Route::get('/reset', function () {
 Route::get('/new-password', function () {
 	return view('new_password');
 });
+Route::get('/sent', function () {
+	return view('sent_confirmation');
+});
+Route::get('/update', function () {
+	return view('update_confirmation');
+});
+Route::get('/confirmed', function () {
+	return view('confirmed');
+});
