@@ -20,16 +20,16 @@ Route::get('/register', function () {
 	return view('register');
 });
 Route::get('/reset', function () {
-	return view('reset_password');
+	return view('reset-password');
 });
 Route::get('/new-password', function () {
-	return view('new_password');
+	return view('new-password');
 });
 Route::get('/sent', function () {
-	return view('sent_confirmation');
+	return view('sent-confirmation');
 });
 Route::get('/update', function () {
-	return view('update_confirmation');
+	return view('update-confirmation');
 });
 Route::get('/confirmed', function () {
 	return view('confirmed');
