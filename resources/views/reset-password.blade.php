@@ -1,4 +1,4 @@
-<x-blank_layout>
+<x-blank-layout>
     <div>
         <h2 class="text-center font-black text-xl md:text-2xl main-dark mb-10 md:mb-14">{{ __('forms.reset password') }}</h2>
         <form action="POST" class="flex flex-col justify-between md:justify-start md:gap-14 h-[500px] gap-6">
@@ -11,4 +11,4 @@
             <x-form-button text="{{ __('forms.log in') }}"></x-form-button>
         </form>
     </div>
-</x-blank_layout>
+</x-blank-layout>

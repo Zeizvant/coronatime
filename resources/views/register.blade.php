@@ -1,4 +1,4 @@
-<x-auth_layout>
+<x-auth-layout>
     <div>
         <h2 class="font-black text-xl md:text-2xl main-dark mb-2 md:mb-4">{{ __('forms.welcome to coronatime') }}</h2>
         <p class="text-base md:text-xl font-normal main-grey mb-6">{{ __('forms.please enter required info to sign up') }}</p>
@@ -37,4 +37,4 @@
             <p class="text-sm md:text-base text-center font-normal ">{{ __('forms.don’t have and account?') }} <a href="#" class="font-semibold">{{ __('forms.log in') }}</a></p>
         </form>
     </div>
-</x-auth_layout>
+</x-auth-layout>

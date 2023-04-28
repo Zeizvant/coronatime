@@ -1,4 +1,4 @@
-<x-auth_layout>
+<x-auth-layout>
     <div>
         <h2 class="font-black text-xl md:text-2xl main-dark mb-2 md:mb-4">{{ __('forms.welcome back') }}</h2>
         <p class="text-base md:text-xl font-normal main-grey mb-6">{{ __('forms.welcome back! please enter your details') }}</p>
