@@ -16,7 +16,7 @@
                     <div class="flex gap-8">
                         <div class="font-bold main-dark">username</div>
                         <di class="border-grey border-l"></di>
-                        <div>log out</div>
+                        <div>{{ __('landing.log_out') }}</div>
                     </div>
                 </div>
             </div>

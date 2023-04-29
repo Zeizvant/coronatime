@@ -37,3 +37,6 @@ Route::get('/confirmed', function () {
 Route::get('/', function () {
 	return view('landing');
 });
+Route::get('/country', function () {
+	return view('country-landing');
+});
