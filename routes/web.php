@@ -34,3 +34,6 @@ Route::get('/update', function () {
 Route::get('/confirmed', function () {
 	return view('confirmed');
 });
+Route::get('/', function () {
+	return view('landing');
+});
