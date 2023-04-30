@@ -6,4 +6,7 @@ return [
 	'by_country'            => 'By country',
 	'worldwide_statistics'  => 'Worldwide Statistics',
 	'statistics_by_country' => 'Statistics by country',
+	'new_cases'             => 'New cases',
+	'recovered'             => 'Recovered',
+	'death'                 => 'Death',
 ];

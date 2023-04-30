@@ -15,8 +15,8 @@
 </head>
 <body class="w-full flex flex-col items-center justify-center">
 <div class="border-grey border-b w-full flex justify-center">
-    <div class="h-[80px] sm:mx-auto flex justify-center w-343 md:w-full md:w-5/6 xl:w-[1284px] mx-4 p-0 md:mx-auto">
-        <div class="w-343 m-auto md:w-full md:mx-10 xl:m-0 box-border xl:w-[1284px] flex flex-col md:items-center">
+    <div class="h-[80px] sm:mx-auto flex justify-center w-11/12 md:w-full md:w-5/6 xl:w-[1284px] mx-4 p-0 md:mx-auto">
+        <div class="w-full m-auto md:mx-10 xl:m-0 box-border xl:w-[1284px] flex flex-col md:items-center">
             <div class="w-full box-border flex justify-between items-center">
                 <img class="h-[32px] md:h-auto md:m-y-[20px] m-6 ml-0" src="{{ asset('images/coronatime-main.svg') }}" alt="logo" />
                 <div class="flex gap-8 items-center">
@@ -27,8 +27,8 @@
         </div>
     </div>
 </div>
-<div class="sm:mx-auto flex justify-center w-343 md:w-full md:w-5/6 xl:w-[1284px] mx-4 p-0 md:mx-auto">
-    <div class="w-343 m-auto md:w-full md:mx-10 xl:m-0 box-border xl:w-[1284px] flex flex-col md:items-center">
+<div class="sm:mx-auto flex justify-center w-full md:w-full md:w-5/6 xl:w-[1284px] mx-4 p-0 md:mx-auto">
+    <div class="m-auto w-11/12 md:mx-10 xl:m-0 box-border xl:w-[1284px] flex flex-col md:items-center">
         <div class="w-full box-border flex flex-col">
             <h1 class="my-10 main-dark text-base text-sm md:text-base font-extrabold">{{$header}}</h1>
             <div class="border-grey border-b flex gap-6 md:gap-[72px]">
