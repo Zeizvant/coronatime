@@ -9,4 +9,9 @@ return [
 	'new_cases'             => 'New cases',
 	'recovered'             => 'Recovered',
 	'death'                 => 'Death',
+	'search_by_country'     => 'Search by country',
+	'location'              => 'Location',
+	'new_cases'             => 'New cases',
+	'deaths'                => 'Deaths',
+	'recovered'             => 'Recovered',
 ];
