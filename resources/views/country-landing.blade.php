@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="mt-6 md:mt-10 w-full">
-            <x-statistics-table></x-statistics-table>
+            <x-statistics-table recovered="{{ $recovered }}" confirmed="{{ $confirmed }}" deaths="{{ $deaths }}" :countries="$countries"></x-statistics-table>
         </div>
     </div>
 </x-landing-layout>
