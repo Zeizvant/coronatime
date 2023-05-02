@@ -30,7 +30,7 @@ class FetchCountryStatistics extends Command
 	{
 		$countries = Country::all();
 		CountryStatistic::truncate();
-		foreach ($countries as $country) {
+		$countries->each(function ($country) {
 			$stats = Http::post('https://devtest.ge/get-country-statistics', ['code' => $country['code']]);
 			$data = json_decode($stats->body());
 			CountryStatistic::create([
@@ -43,6 +43,6 @@ class FetchCountryStatistics extends Command
 				'created_at'   => $data->created_at,
 				'updated_at'   => $data->updated_at,
 			]);
-		}
+		});
 	}
 }

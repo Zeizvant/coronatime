@@ -30,7 +30,7 @@ class FetchCountries extends Command
 		$countries = Http::get('https://devtest.ge/countries')->json();
 		Country::truncate();
 		foreach ($countries as $country) {
-			\App\Models\Country::create([
+			Country::create([
 				'code' => $country['code'],
 				'name' => json_encode($country['name']),
 			]);
