@@ -33,11 +33,11 @@
             <h1 class="my-10 main-dark text-base text-sm md:text-base font-extrabold">{{$header}}</h1>
             <div class="border-grey border-b flex gap-6 md:gap-[72px]">
                 @if($section == 'worldwide')
-                    <a href="/"><div class="cursor-pointer border-[#010414] font-bold border-b-[3px] pb-4">{{ __('landing.worldwide') }}</div></a>
-                    <a href="/country"><div class="cursor-pointer pb-4">{{ __('landing.by_country') }}</div></a>
+                    <a href="{{ route('index') }}"><div class="cursor-pointer border-[#010414] font-bold border-b-[3px] pb-4">{{ __('landing.worldwide') }}</div></a>
+                    <a href="{{ route('landing.country') }}"><div class="cursor-pointer pb-4">{{ __('landing.by_country') }}</div></a>
                 @else
-                    <a href="/"><div class="cursor-pointer pb-4">{{ __('landing.worldwide') }}</div></a>
-                    <a href="/country"><div class="cursor-pointer border-[#010414] font-bold border-b-[3px] pb-4">{{ __('landing.by_country') }}</div></a>
+                    <a href="{{ route('index') }}"><div class="cursor-pointer pb-4">{{ __('landing.worldwide') }}</div></a>
+                    <a href="{{ route('landing.country') }}"><div class="cursor-pointer border-[#010414] font-bold border-b-[3px] pb-4">{{ __('landing.by_country') }}</div></a>
                 @endif
             </div>
             {{$slot}}

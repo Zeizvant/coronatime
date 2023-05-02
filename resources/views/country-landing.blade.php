@@ -10,8 +10,8 @@
                 <input type="text" name="price" id="price" class="block w-full rounded-md border-0 py-1.5 pl-11 pr-5 text-gray-900 md:ring-1 md:ring-inset md:ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" placeholder="{{ __('landing.search_by_country') }}">
             </div>
         </div>
-        <div class="mt-6 md:mt-10 w-full">
-            <x-statistics-table></x-statistics-table>
+        <div class="mt-6 md:mt-10 w-full h-[570px] overflow-y-scroll">
+            <x-statistics-table recovered="{{ $recovered }}" confirmed="{{ $confirmed }}" deaths="{{ $deaths }}" :countries="$countries"></x-statistics-table>
         </div>
     </div>
 </x-landing-layout>

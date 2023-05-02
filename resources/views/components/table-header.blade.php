@@ -1,4 +1,4 @@
-<thead>
+<thead class="sticky top-0 z-10">
 <tr class="bg-[#F6F6F7] h-14">
     <th class="md:w-[265px]">
         <div class="flex gap-2.5">

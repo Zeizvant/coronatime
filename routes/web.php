@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\CountryStatisticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use App\Http\Controllers\LanguageController;
 |
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
+Route::controller(CountryStatisticController::class)->group(function () {
+	Route::get('/', 'index')->name('index');
+	Route::get('/country', 'country')->name('landing.country');
+});
 
 Route::get('/login', function () {
 	return view('login');
@@ -35,10 +40,4 @@ Route::get('/update', function () {
 });
 Route::get('/confirmed', function () {
 	return view('confirmed');
-});
-Route::get('/', function () {
-	return view('landing');
-});
-Route::get('/country', function () {
-	return view('country-landing');
 });
