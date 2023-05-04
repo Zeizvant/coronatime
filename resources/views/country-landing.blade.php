@@ -1,4 +1,7 @@
 <x-landing-layout header="{{ __('landing.statistics_by_country') }}" section="country">
+    <script>
+        console.log(@json($countries[0]['countryName']['name']));
+    </script>
     <div class="flex flex-col"
          x-init="$watch('search', (val) => localStorage.setItem('search', val))"
          x-data="{
@@ -6,17 +9,28 @@
             locale: {{ json_encode(app()->getLocale()) }},
             search: localStorage.getItem('search') || '',
             sortCol: '',
+            buttonId: 0,
             show_item(el) {
                 return this.search === '' || el.getAttribute('data').includes(this.search) || el.getAttribute('data').toLowerCase().includes(this.search)
             },
             sort(col, asc){
                 if(this.sortCol === col);
                     this.sortCol = col;
-                    this.countries.sort((a, b) => {
-                        if(a[this.sortCol] < b[this.sortCol]) return asc?1:-1;
-                        else if(a[this.sortCol] > b[this.sortCol]) return asc?-1:1;
-                        return 0;
-                    });
+                    if(col === 'country'){
+                        this.countries.sort((a, b) => {
+                            if(a.country_name.name[this.locale] < b.country_name.name[this.locale]) return asc?1:-1;
+                            else if(a.country_name.name[this.locale] > b.country_name.name[this.locale]) return asc?-1:1;
+                            return 0;
+                        });
+                    }
+                    else{
+                        this.countries.sort((a, b) => {
+                            if(a[this.sortCol] < b[this.sortCol]) return asc?1:-1;
+                            else if(a[this.sortCol] > b[this.sortCol]) return asc?-1:1;
+                            return 0;
+                        });
+                    }
+
             },
           }"
     >
