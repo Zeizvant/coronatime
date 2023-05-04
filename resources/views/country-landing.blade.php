@@ -8,7 +8,16 @@
             sortCol: '',
             show_item(el) {
                 return this.search === '' || el.getAttribute('data').includes(this.search) || el.getAttribute('data').toLowerCase().includes(this.search)
-            }
+            },
+            sort(col, asc){
+                if(this.sortCol === col);
+                    this.sortCol = col;
+                    this.countries.sort((a, b) => {
+                        if(a[this.sortCol] < b[this.sortCol]) return asc?1:-1;
+                        else if(a[this.sortCol] > b[this.sortCol]) return asc?-1:1;
+                        return 0;
+                    });
+            },
           }"
     >
         <div class="w-60">
