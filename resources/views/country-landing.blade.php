@@ -2,7 +2,7 @@
     <div class="flex flex-col"
          x-init="$watch('search', (val) => localStorage.setItem('search', val))"
          x-data="{
-            countries: {{ $countries }},
+            countries: @js($countries),
             locale: {{ json_encode(app()->getLocale()) }},
             search: localStorage.getItem('search') || '',
             sortCol: '',
