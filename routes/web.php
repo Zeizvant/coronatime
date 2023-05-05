@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CountryStatisticController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,11 @@ Route::controller(CountryStatisticController::class)->group(function () {
 	Route::get('/country', 'country')->name('landing.country');
 });
 
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 Route::get('/login', function () {
 	return view('login');
-});
-Route::get('/register', function () {
-	return view('register');
 });
 Route::get('/reset', function () {
 	return view('reset-password');
