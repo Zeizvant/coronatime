@@ -15,4 +15,9 @@ class Country extends Model
 	public $translatable = ['name'];
 
 	protected $guarded = [];
+
+	public function country()
+	{
+		return $this->belongsTo(CountryStatistic::class, 'code', 'code');
+	}
 }

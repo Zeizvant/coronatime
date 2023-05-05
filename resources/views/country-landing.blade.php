@@ -1,7 +1,4 @@
 <x-landing-layout header="{{ __('landing.statistics_by_country') }}" section="country">
-    <script>
-        console.log(@json($countries[0]['countryName']['name']));
-    </script>
     <div class="flex flex-col"
          x-init="$watch('search', (val) => localStorage.setItem('search', val))"
          x-data="{

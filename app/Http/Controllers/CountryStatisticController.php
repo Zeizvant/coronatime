@@ -13,7 +13,7 @@ class CountryStatisticController extends Controller
 			'confirmed' => CountryStatistic::all()->sum('confirmed'),
 			'recovered' => CountryStatistic::all()->sum('recovered'),
 			'deaths'    => CountryStatistic::all()->sum('deaths'),
-			'countries' => CountryStatistic::all(),
+			'countries' => CountryStatistic::with('countryName')->get(),
 		]);
 	}
 
