@@ -18,7 +18,7 @@ use App\Http\Controllers\AuthController;
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
 Route::controller(CountryStatisticController::class)->group(function () {
-	Route::get('/', 'index')->middleware('verified')->name('index');
+	Route::get('/', 'index')->name('index');
 	Route::get('/country', 'country')->name('landing.country');
 });
 
