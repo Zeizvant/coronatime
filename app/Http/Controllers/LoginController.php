@@ -15,7 +15,7 @@ class LoginController extends Controller
 
 	public function login(LoginRequest $request): RedirectResponse
 	{
-		if (auth()->attempt(['username' => $request->username, 'password' => $request->password])) {
+		if (auth()->attempt(['username' => $request->username, 'password' => $request->password], $remember = $request->remember)) {
 			return redirect()->route('index');
 		}
 		return back();
