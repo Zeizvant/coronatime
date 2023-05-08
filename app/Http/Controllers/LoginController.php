@@ -15,9 +15,18 @@ class LoginController extends Controller
 
 	public function login(LoginRequest $request): RedirectResponse
 	{
-		if (auth()->attempt(['username' => $request->username, 'password' => $request->password], $remember = $request->remember)) {
+		$username = $request->username;
+
+		if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+			auth()->attempt(['email' => $username, 'password' => $request->password], $remember = $request->remember);
+		} else {
+			auth()->attempt(['username' => $username, 'password' => $request->password], $remember = $request->remember);
+		}
+
+		if (auth()->check()) {
 			return redirect()->route('index');
 		}
+
 		return back();
 	}
 }
