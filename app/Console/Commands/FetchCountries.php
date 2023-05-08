@@ -32,7 +32,7 @@ class FetchCountries extends Command
 		foreach ($countries as $country) {
 			Country::create([
 				'code' => $country['code'],
-				'name' => json_encode($country['name']),
+				'name' => $country['name'],
 			]);
 		}
 	}

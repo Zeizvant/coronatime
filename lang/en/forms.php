@@ -26,4 +26,7 @@ return [
 	'sign_in'                                     => 'Sign in',
 	'your_password_has_been_updated_successfully' => 'Your password has been updeted successfully',
 	'your_account_is_confirmed_you_can_sign_in'   => 'Your account is confirmed, you can sign in',
+	'verify_email'                                => 'Verify Email',
+	'confirmation_email'                          => 'Confirmation email',
+	'click_this_button_to_verify_your_email'      => 'click this button to verify your email',
 ];

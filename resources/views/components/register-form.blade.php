@@ -1,4 +1,5 @@
-<form action="POST" class="flex flex-col gap-6">
+<form action="{{ route('register.store') }}" method="POST" class="flex flex-col gap-6">
+    @csrf
     <x-input type="text" name="username" label="{{ __('forms.username') }}" placeholder="{{ __('forms.enter_unique_username') }}"></x-input>
     <x-input type="email" name="email" label="{{ __('forms.email') }}" placeholder="{{ __('forms.enter_your_email') }}"></x-input>
     <x-password-input name="password" label="{{ __('forms.password') }}" placeholder="{{ __('forms.fill_in_password') }}"></x-password-input>

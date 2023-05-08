@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CountryStatisticController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +22,24 @@ Route::controller(CountryStatisticController::class)->group(function () {
 	Route::get('/country', 'country')->name('landing.country');
 });
 
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::get('/email/verify', [AuthController::class, 'verifyEmail'])->name('verification.notice');
+
+Route::get('/email/verify/{token}', [AuthController::class, 'verify'])->name('verification.verify');
+
+Route::get('/confirmed', [AuthController::class, 'confirmation'])->name('verification.confirmation');
+
 Route::get('/login', function () {
 	return view('login');
-});
-Route::get('/register', function () {
-	return view('register');
-});
+})->name('login');
 Route::get('/reset', function () {
 	return view('reset-password');
 });
 Route::get('/new-password', function () {
 	return view('new-password');
 });
-Route::get('/sent', function () {
-	return view('sent-confirmation');
-});
 Route::get('/update', function () {
 	return view('update-confirmation');
-});
-Route::get('/confirmed', function () {
-	return view('confirmed');
 });
