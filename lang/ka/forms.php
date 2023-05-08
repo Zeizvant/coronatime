@@ -26,4 +26,7 @@ return [
 	'sign_in'                                     => 'შესვლა',
 	'your_password_has_been_updated_successfully' => 'თქვენი პაროლი წარმატებით განახლდა',
 	'your_account_is_confirmed_you_can_sign_in'   => 'თქვენი ანგარიში დადასტურებულია, შეგიძლიათ შეხვიდეთ',
+	'verify_email'                                => 'დაადასტურეთ ელფოსტა',
+	'confirmation_email'                          => 'ელფოსტის დადასტურება',
+	'click_this_button_to_verify_your_email'      => 'დააკლიკეთ ამ ღილაკზე თქვენი ელფოსტის დასადასტურებლად',
 ];
