@@ -14,9 +14,13 @@
             <div class="hidden md:block flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="md:ml-6">
                     <div class="flex gap-8">
-                        <div class="font-bold main-dark">username</div>
+                        <div class="font-bold main-dark">{{ auth()->user()->username }}</div>
                         <di class="border-grey border-l"></di>
-                        <div>{{ __('landing.log_out') }}</div>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="cursor-pointer">{{ __('landing.log_out') }}</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

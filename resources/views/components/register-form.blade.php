@@ -8,5 +8,5 @@
         <x-remember-device-checkbox></x-remember-device-checkbox>
     </div>
     <x-form-button text="{{ __('forms.sign_up') }}"></x-form-button>
-    <p class="text-sm md:text-base text-center font-normal ">{{ __('forms.don’t_have_an_account?') }} <a href="#" class="font-semibold">{{ __('forms.log_in') }}</a></p>
+    <p class="text-sm md:text-base text-center font-normal ">{{ __('forms.don’t_have_an_account?') }} <a href="{{ route('login') }}" class="font-semibold">{{ __('forms.log_in') }}</a></p>
 </form>
