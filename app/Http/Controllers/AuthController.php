@@ -35,4 +35,10 @@ class AuthController extends Controller
 	{
 		return view('confirmed');
 	}
+
+	public function logout(): RedirectResponse
+	{
+		auth()->logout();
+		return redirect()->route('login');
+	}
 }

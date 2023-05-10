@@ -5,6 +5,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CountryStatisticController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,15 @@ Route::get('/email/verify/{token}', [AuthController::class, 'verify'])->name('ve
 
 Route::get('/confirmed', [AuthController::class, 'confirmation'])->name('verification.confirmation');
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
 Route::get('/login', function () {
 	return view('login');
 })->name('login');
+
+Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
+
 Route::get('/reset', function () {
 	return view('reset-password');
 });
