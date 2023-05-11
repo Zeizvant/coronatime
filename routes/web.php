@@ -19,8 +19,8 @@ use App\Http\Controllers\LoginController;
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
 Route::controller(CountryStatisticController::class)->group(function () {
-	Route::get('/', 'index')->name('index');
-	Route::get('/country', 'country')->name('landing.country');
+	Route::get('/', 'index')->middleware('auth')->name('index');
+	Route::get('/country', 'country')->name('landing.country')->middleware('auth');
 });
 
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
