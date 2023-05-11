@@ -29,4 +29,6 @@ return [
 	'verify_email'                                => 'Verify Email',
 	'confirmation_email'                          => 'Confirmation email',
 	'click_this_button_to_verify_your_email'      => 'click this button to verify your email',
+	'recover_password'                            => 'Recover password',
+	'click_this_button_to_recover_a_password'     => 'click this button to recover a password',
 ];

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="w-full flex justify-center items-center mt-5 lg:mt-[150px]">
     <div class="w-343 md:w-[520px] gap-10 flex flex-col justify-center items-center">
