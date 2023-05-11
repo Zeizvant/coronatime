@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>Coronatime</title>
 </head>
 <body>
     <div class="bg-white flex justify-between">

@@ -6,6 +6,7 @@ use App\Http\Controllers\CountryStatisticController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,12 +42,6 @@ Route::get('/login', function () {
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 
-Route::get('/reset', function () {
-	return view('reset-password');
-});
-Route::get('/new-password', function () {
-	return view('new-password');
-});
-Route::get('/update', function () {
-	return view('update-confirmation');
-});
+Route::get('/reset', [PasswordController::class, 'reset'])->middleware('guest')->name('password.reset');
+Route::get('/new-password', [PasswordController::class, 'newPassword'])->middleware('guest')->name('password.new');
+Route::get('/update', [PasswordController::class, 'confirmation'])->middleware('guest')->name('password.confirmation');
