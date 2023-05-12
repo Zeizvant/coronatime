@@ -47,3 +47,8 @@ Route::post('/reset', [PasswordController::class, 'sendEmail'])->middleware('gue
 Route::get('/new-password/{token}', [PasswordController::class, 'newPassword'])->middleware('guest')->name('password.new');
 Route::post('/new-password/{token}', [PasswordController::class, 'resetPassword'])->name('password.set.new');
 Route::get('/update', [PasswordController::class, 'confirmation'])->middleware('guest')->name('password.confirmation');
+Route::get('/test', function () {
+	$invoice = 1;
+
+	return new App\Mail\passwordResetMail($invoice);
+});
