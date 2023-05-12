@@ -16,15 +16,16 @@
     </style>
 </header>
 <body>
-    <img src="{{ asset('images/email-verification.png') }}"/>
-    <p class="header">
-        {{ __('forms.confirmation_email') }}
-    </p>
-    <p style="text-align: center; color: #010414; font-size: 18px">
-        {{ __('forms.click_this_button_to_verify_your_email') }}
-    </p>
-    <x-mail::button url="{{ route('password.set.new', $token) }}" color="success">
-        {{ __('forms.recover_password') }}
-    </x-mail::button>
+<img src="{{ asset('images/email-verification.png') }}"/>
+<p class="header">
+    {{ __('forms.confirmation_email') }}
+</p>
+<p style="text-align: center; color: #010414; font-size: 18px">
+    {{ __('forms.click_this_button_to_recover_a_password') }}
+</p>
+<x-mail::button url="{{ route('password.set.new', $token) }}" color="success">
+    {{ __('forms.recover_password') }}
+</x-mail::button>
 </body>
+
 
