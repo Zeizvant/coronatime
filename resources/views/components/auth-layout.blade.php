@@ -16,7 +16,9 @@
         <div class="flex flex-col items-center w-full xl:w-fit mt-6 m-4 lg:ml-[108px]">
             <div class="w-343 md:w-392">
                 <div class="flex justify-start w-full">
-                    <img class="mb-[43px]" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+                    <a href="{{ route('index') }}">
+                        <img class="mb-[43px]" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+                    </a>
                 </div>
                 <div>
                     {{ $slot }}

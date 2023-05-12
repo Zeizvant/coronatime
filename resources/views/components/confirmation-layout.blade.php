@@ -18,7 +18,6 @@
         <div class="w-full flex justify-start md:justify-center">
             <a href="{{ route('index') }}">
                 <img class=" m-6 ml-0" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
-
             </a>
         </div>
         <div class="flex flex-col items-center justify-stretch gap-4">

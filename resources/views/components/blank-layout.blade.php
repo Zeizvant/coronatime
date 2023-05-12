@@ -15,7 +15,9 @@
     <div class="flex justify-center w-full">
         <div class="w-343 md:w-392 flex flex-col">
             <div class="w-full flex justify-start md:justify-center">
-                <img class="h-[32px] md:h-auto mb-[40px] md:mb-[148px] m-6 ml-0" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+                <a href="{{ route('index') }}">
+                    <img class="h-[32px] md:h-auto mb-[40px] md:mb-[148px] m-6 ml-0" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+                </a>
             </div>
             <div class="w-full h-[570px] box-border">
                 {{ $slot }}
