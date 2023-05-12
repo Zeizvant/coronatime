@@ -6,6 +6,7 @@ use App\Http\Controllers\CountryStatisticController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ use App\Http\Controllers\LoginController;
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
 Route::controller(CountryStatisticController::class)->group(function () {
-	Route::get('/', 'index')->name('index');
-	Route::get('/country', 'country')->name('landing.country');
+	Route::get('/', 'index')->middleware('auth')->name('index');
+	Route::get('/country', 'country')->name('landing.country')->middleware('auth');
 });
 
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
@@ -41,12 +42,8 @@ Route::get('/login', function () {
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 
-Route::get('/reset', function () {
-	return view('reset-password');
-});
-Route::get('/new-password', function () {
-	return view('new-password');
-});
-Route::get('/update', function () {
-	return view('update-confirmation');
-});
+Route::get('/reset', [PasswordController::class, 'reset'])->middleware('guest')->name('password.reset');
+Route::post('/reset', [PasswordController::class, 'sendEmail'])->middleware('guest')->name('password.send.email');
+Route::get('/new-password/{token}', [PasswordController::class, 'newPassword'])->middleware('guest')->name('password.new');
+Route::post('/new-password/{token}', [PasswordController::class, 'resetPassword'])->name('password.set.new');
+Route::get('/update', [PasswordController::class, 'confirmation'])->middleware('guest')->name('password.confirmation');

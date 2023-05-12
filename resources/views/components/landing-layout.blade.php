@@ -18,7 +18,9 @@
     <div class="h-[80px] sm:mx-auto flex justify-center w-11/12 md:w-full md:w-5/6 xl:w-[1284px] mx-4 p-0 md:mx-auto">
         <div class="w-full m-auto md:mx-10 xl:m-0 box-border xl:w-[1284px] flex flex-col md:items-center">
             <div class="w-full box-border flex justify-between items-center">
-                <img class="h-[32px] md:h-auto md:m-y-[20px] m-6 ml-0" src="{{ asset('images/coronatime-main.svg') }}" alt="logo" />
+                <a href="{{ route('index') }}">
+                    <img class="h-[32px] md:h-auto md:m-y-[20px] m-6 ml-0" src="{{ asset('images/coronatime-main.svg') }}" alt="logo" />
+                </a>
                 <div class="flex gap-8 items-center">
                     <x-language-dropdown></x-language-dropdown>
                     <x-menu></x-menu>
