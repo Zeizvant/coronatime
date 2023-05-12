@@ -31,4 +31,5 @@ return [
 	'click_this_button_to_verify_your_email'      => 'დააკლიკეთ ამ ღილაკზე თქვენი ელფოსტის დასადასტურებლად',
 	'recover_password'                            => 'Პაროლის აღდგენა',
 	'click_this_button_to_recover_a_password'     => 'დააკლიკეთ ამ ღილაკზე პაროლის აღსადგენად',
+	'save_changes'                                => 'Ცვლილებების შენახვა',
 ];

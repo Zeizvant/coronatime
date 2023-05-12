@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MailRequest;
+use App\Http\Requests\PasswordResetRequest;
 use App\Mail\PasswordResetMail;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -21,18 +23,31 @@ class PasswordController extends Controller
 	public function sendEmail(MailRequest $request): RedirectResponse
 	{
 		$token = Str::random(64);
-		DB::table('password_reset_tokens')->insert([
+		DB::table('password_reset_tokens')->insertOrIgnore([
 			'email'      => $request->email,
 			'token'      => $token,
 			'created_at' => Carbon::now(),
 		]);
-		Mail::to($request->email)->send(new PasswordResetMail($token));
-		return redirect()->back();
+		$passwordToken = DB::table('password_reset_tokens')->where('email', $request->email)->first()->token;
+
+		Mail::to($request->email)->send(new PasswordResetMail($passwordToken));
+		return redirect()->route('verification.notice');
 	}
 
 	public function newPassword($token): View
 	{
-		return view('new-password');
+		return view('new-password', [
+			'token' => $token,
+		]);
+	}
+
+	public function resetPassword(PasswordResetRequest $request, $token): RedirectResponse
+	{
+		$email = DB::table('password_reset_tokens')->where('token', $token)->first()->email;
+		$user = User::all()->where('email', $email)->firstOrFail();
+		$user->password = $request->password;
+		$user->save();
+		return redirect()->route('password.confirmation');
 	}
 
 	public function confirmation(): View

@@ -16,7 +16,10 @@
 <div class="flex justify-center w-full">
     <div class="w-343 md:w-392 flex flex-col gap-[200px] md:gap-[252px]">
         <div class="w-full flex justify-start md:justify-center">
-            <img class=" m-6 ml-0" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+            <a href="{{ route('index') }}">
+                <img class=" m-6 ml-0" src="{{ asset('images/coronatime.svg') }}" alt="logo" />
+
+            </a>
         </div>
         <div class="flex flex-col items-center justify-stretch gap-4">
             <img src="{{ asset('images/confirm_animation.gif') }}" />

@@ -45,4 +45,5 @@ Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 Route::get('/reset', [PasswordController::class, 'reset'])->middleware('guest')->name('password.reset');
 Route::post('/reset', [PasswordController::class, 'sendEmail'])->middleware('guest')->name('password.send.email');
 Route::get('/new-password/{token}', [PasswordController::class, 'newPassword'])->middleware('guest')->name('password.new');
+Route::post('/new-password/{token}', [PasswordController::class, 'resetPassword'])->name('password.set.new');
 Route::get('/update', [PasswordController::class, 'confirmation'])->middleware('guest')->name('password.confirmation');
