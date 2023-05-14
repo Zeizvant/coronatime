@@ -58,7 +58,7 @@
             $watch('password', value => { validate('password') })">
     @csrf
     <x-input type="text" name="username" label="{{ __('forms.username') }}" placeholder="{{ __('forms.enter_unique_username_or_email') }}"></x-input>
-    <x-password-input name="password" label="{{ __('forms.password') }}" placeholder="{{ __('forms.fill_in_password') }}" ></x-password-input>
+    <x-password-input register="false" name="password" label="{{ __('forms.password') }}" placeholder="{{ __('forms.fill_in_password') }}" ></x-password-input>
     <div class="flex justify-between items-center">
         <x-remember-device-checkbox></x-remember-device-checkbox>
         <a href="{{ route('password.reset') }}" class="text-sm md:text-base font-semibold text-[#2029F3]">{{ __('forms.forgot_password?') }}</a>

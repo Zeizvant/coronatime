@@ -6,6 +6,8 @@
     class="flex flex-col gap-10"
     x-data="{
         username: '',
+        password: '',
+        password_confirmation: '',
         email: '',
         validation: {
             username: {
@@ -41,6 +43,46 @@
                 error: 'none',
                 message: ''
             },
+            password: {
+                rule: {
+                    required: function (field) {
+                        if (field) {
+                            return { error: 'false', message: ''}
+                        } else {
+                            return { error: 'true', message: 'This field is required.'}
+                        }
+                    },
+                    minLength: function (field, value = 3) {
+                        if (field && field.length >= value) {
+                            return { error: 'false', message: ''}
+                        } else {
+                            return { error: 'true', message: `This field must have minimum ${value} characters length.`}
+                        }
+                    }
+                },
+                error: 'none',
+                message: ''
+            },
+            password_confirmation: {
+                rule: {
+                    required: function (field) {
+                        if (field) {
+                            return { error: 'false', message: ''}
+                        } else {
+                            return { error: 'true', message: 'This field is required.'}
+                        }
+                    },
+                    pattern: function (field) {
+                        if (password_confirmation.value === password.value) {
+                            return { error: 'false', message: ''}
+                        } else {
+                            return { error: 'true', message: 'The password confirmation does not match.'}
+                        }
+                    },
+                },
+                error: 'none',
+                message: ''
+            },
         },
         validate (field) {
             for (const key in this.validation[field].rule) {
@@ -57,11 +99,13 @@
         }
     }"
     x-init="$watch('username', value => { validate('username') })
-            $watch('email', value => { validate('email') })">
+            $watch('email', value => { validate('email') })
+            $watch('password', value => { validate('password') })
+            $watch('password_confirmation', value => { validate('password_confirmation') })">
     @csrf
     <x-input type="text" name="username" label="{{ __('forms.username') }}" placeholder="{{ __('forms.enter_unique_username') }}"></x-input>
     <x-input type="text" name="email" label="{{ __('forms.email') }}" placeholder="{{ __('forms.enter_your_email') }}"></x-input>
-    <x-password-input name="password" label="{{ __('forms.password') }}" placeholder="{{ __('forms.fill_in_password') }}"></x-password-input>
+    <x-password-input register="true" name="password" label="{{ __('forms.password') }}" placeholder="{{ __('forms.fill_in_password') }}"></x-password-input>
     <x-password-confirmation-input name="password_confirmation" label="{{ __('forms.repeat_password') }}" placeholder="{{ __('forms.repeat_password') }}"></x-password-confirmation-input>
     <div class="flex justify-between items-center">
         <x-remember-device-checkbox></x-remember-device-checkbox>
