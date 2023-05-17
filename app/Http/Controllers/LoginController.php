@@ -22,7 +22,6 @@ class LoginController extends Controller
 		} else {
 			auth()->attempt(['username' => $username, 'password' => $request->password], $remember = $request->remember);
 		}
-
 		if (auth()->check()) {
 			return redirect()->route('index');
 		}
