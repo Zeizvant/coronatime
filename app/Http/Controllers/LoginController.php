@@ -27,6 +27,6 @@ class LoginController extends Controller
 			return redirect()->route('index');
 		}
 
-		return back()->withErrors(['password' => 'invalid password']);
+		return back()->withErrors(['password' => 'invalid password'])->withInput(['username' => $username]);
 	}
 }
