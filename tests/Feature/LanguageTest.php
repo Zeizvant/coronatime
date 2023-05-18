@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LanguageTest extends TestCase
 {
-	/**
-	 * A basic feature test example.
-	 */
+	use RefreshDatabase;
+
 	public function test_language_should_change_locale_according_locale_ka_parameter()
 	{
 		$response = $this->get('/change/ka');

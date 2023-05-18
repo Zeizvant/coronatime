@@ -22,7 +22,8 @@ class PasswordResetRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'password' => 'required|confirmed|min:3',
+			'password'              => 'required|confirmed|min:3',
+			'password_confirmation' => 'required',
 		];
 	}
 }
