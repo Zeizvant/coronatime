@@ -38,7 +38,7 @@ class PasswordTest extends TestCase
 
 	public function test_password_should_send_email_if_we_provide_correct_email()
 	{
-		Mail::fake();
+		Mail::fake([]);
 		$email = 'test@test.com';
 		User::factory()->create([
 			'email'             => $email,
