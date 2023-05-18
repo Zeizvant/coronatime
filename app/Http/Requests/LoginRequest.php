@@ -22,7 +22,7 @@ class LoginRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'username' => 'required|min:3|exists:users,email',
+			'username' => 'required|min:3|' . (filter_var($this->request->get('username'), FILTER_VALIDATE_EMAIL) ? 'exists:users,email' : 'exists:users,username'),
 			'password' => 'required',
 			'remember' => 'nullable',
 		];

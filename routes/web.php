@@ -21,7 +21,7 @@ use App\Http\Controllers\PasswordController;
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
 Route::controller(CountryStatisticController::class)->group(function () {
 	Route::get('/', 'index')->middleware('auth')->name('index');
-	Route::get('/country', 'country')->name('landing.country')->middleware('auth');
+	Route::get('/country', 'country')->middleware('auth')->name('landing.country');
 });
 
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
@@ -34,10 +34,6 @@ Route::get('/email/verify/{token}', [AuthController::class, 'verify'])->name('ve
 Route::get('/confirmed', [AuthController::class, 'confirmation'])->name('verification.confirmation');
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
-
-Route::get('/login', function () {
-	return view('login');
-})->name('login');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');

@@ -14,7 +14,7 @@ class AuthController extends Controller
 		return view('sent-confirmation');
 	}
 
-	public function verify($token): RedirectResponse
+	public function verify($token): RedirectResponse|View
 	{
 		$verifyUser = UserVerify::where('token', $token)->first();
 
@@ -26,6 +26,8 @@ class AuthController extends Controller
 				$verifyUser->user->email_verified_at = Carbon::now()->timestamp;
 				$verifyUser->user->save();
 			}
+		} else {
+			abort(404);
 		}
 
 		return redirect()->route('verification.confirmation');
