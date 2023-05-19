@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Mail\emailVerification;
 use App\Mail\passwordResetMail;
 use App\Models\User;
 use Carbon\Carbon;
@@ -38,7 +39,7 @@ class PasswordTest extends TestCase
 
 	public function test_password_should_send_email_if_we_provide_correct_email()
 	{
-		$mail = Mail::fake();
+		Mail::fake();
 		$email = 'test@test.com';
 		User::factory()->create([
 			'email'             => $email,
@@ -50,8 +51,10 @@ class PasswordTest extends TestCase
 			'created_at' => Carbon::now(),
 		]);
 		$response = $this->post('/reset', ['email' => $email]);
-		$mail->token = $token;
-		$mail->assertSent(passwordResetMail::class);
+		Mail::assertSent(passwordResetMail::class, function ($mail) {
+			return $mail->hasSubject('Password Reset Mail');
+		});
+		Mail::assertNotSent(emailVerification::class);
 	}
 
 	public function test_password_new_password_page_is_accessible()
@@ -117,18 +120,12 @@ class PasswordTest extends TestCase
 
 	public function test_passowrd_should_redirect_email_verification_page_if_we_provide_valid_email()
 	{
-		$email = 'test@test.com';
+		$email = 'testa@test.com';
 		User::factory()->create([
 			'username'          => 'test',
 			'email'             => $email,
 			'password'          => 'test',
 			'is_email_verified' => 1,
-		]);
-		$token = Str::random(64);
-		DB::table('password_reset_tokens')->insert([
-			'email'      => $email,
-			'token'      => $token,
-			'created_at' => Carbon::now(),
 		]);
 		$response = $this->post('/reset', ['email' => $email]);
 		$response->assertRedirect('/email/verify');
