@@ -38,7 +38,7 @@ class PasswordTest extends TestCase
 
 	public function test_password_should_send_email_if_we_provide_correct_email()
 	{
-		Mail::fake([]);
+		$mail = Mail::fake();
 		$email = 'test@test.com';
 		User::factory()->create([
 			'email'             => $email,
@@ -50,7 +50,8 @@ class PasswordTest extends TestCase
 			'created_at' => Carbon::now(),
 		]);
 		$response = $this->post('/reset', ['email' => $email]);
-		Mail::assertSent(passwordResetMail::class);
+		$mail->token = $token;
+		$mail->assertSent(passwordResetMail::class);
 	}
 
 	public function test_password_new_password_page_is_accessible()
@@ -105,13 +106,32 @@ class PasswordTest extends TestCase
 			'created_at' => Carbon::now(),
 		]);
 		$password = 'test';
-		$response = $this->post('/new-password/test', [
+		$response = $this->post('/new-password/' . $token, [
 			'password'              => $password,
 			'password_confirmation' => $password,
 			'token'                 => $token,
 		]);
 
 		$this->assertNotEquals(User::all()->first()->password, $oldPassword);
+	}
+
+	public function test_passowrd_should_redirect_email_verification_page_if_we_provide_valid_email()
+	{
+		$email = 'test@test.com';
+		User::factory()->create([
+			'username'          => 'test',
+			'email'             => $email,
+			'password'          => 'test',
+			'is_email_verified' => 1,
+		]);
+		$token = Str::random(64);
+		DB::table('password_reset_tokens')->insert([
+			'email'      => $email,
+			'token'      => $token,
+			'created_at' => Carbon::now(),
+		]);
+		$response = $this->post('/reset', ['email' => $email]);
+		$response->assertRedirect('/email/verify');
 	}
 
 	public function test_password_should_redirect_to_password_confirmation_page_if_password_reseted_successfully()
@@ -126,7 +146,7 @@ class PasswordTest extends TestCase
 			'token'      => $token,
 			'created_at' => Carbon::now(),
 		]);
-		$response = $this->post('/new-password/test', [
+		$response = $this->post('/new-password/' . $token, [
 			'password'              => 'test',
 			'password_confirmation' => 'test',
 			'token'                 => $token,
