@@ -28,8 +28,11 @@
     </div>
     <div x-show="show" class="z-10 bg-white absolute h-max-fit md:hidden w-screen left-0 flex justify-center" id="mobile-menu">
         <div class="w-11/12 flex flex-col items-center rounded-md shadow-lg p-10">
-            <div class="font-bold main-dark">username</div>
-            <div>log out</div>
+            <div class="font-bold main-dark">{{ auth()->user()->username }}</div>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="cursor-pointer">{{ __('landing.log_out') }}</button>
+            </form>
         </div>
     </div>
 </nav>
