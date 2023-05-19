@@ -24,22 +24,26 @@ Route::controller(CountryStatisticController::class)->group(function () {
 	Route::get('/country', 'country')->middleware('auth')->name('landing.country');
 });
 
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::controller(RegisterController::class)->group(function () {
+	Route::get('/register', 'register')->name('register');
+	Route::post('/register', 'store')->name('register.store');
+});
 
-Route::get('/email/verify', [AuthController::class, 'verifyEmail'])->name('verification.notice');
+Route::controller(AuthController::class)->group(function () {
+	Route::get('/email/verify', 'verifyEmail')->name('verification.notice');
+	Route::get('/email/verify/{token}', 'verify')->name('verification.verify');
+	Route::get('/confirmed', 'confirmation')->name('verification.confirmation');
+	Route::post('/logout', 'logout')->middleware('auth')->name('logout');
+});
 
-Route::get('/email/verify/{token}', [AuthController::class, 'verify'])->name('verification.verify');
-
-Route::get('/confirmed', [AuthController::class, 'confirmation'])->name('verification.confirmation');
-
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
-
-Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
-
-Route::get('/reset', [PasswordController::class, 'reset'])->middleware('guest')->name('password.reset');
-Route::post('/reset', [PasswordController::class, 'sendEmail'])->middleware('guest')->name('password.send.email');
-Route::get('/new-password/{token}', [PasswordController::class, 'newPassword'])->middleware('guest')->name('password.new');
-Route::post('/new-password/{token}', [PasswordController::class, 'resetPassword'])->name('password.set.new');
-Route::get('/update', [PasswordController::class, 'confirmation'])->middleware('guest')->name('password.confirmation');
+Route::controller(LoginController::class)->group(function () {
+	Route::get('/login', 'show')->middleware('guest')->name('login');
+	Route::post('/login', 'login')->name('auth.login');
+});
+Route::controller(PasswordController::class)->group(function () {
+	Route::get('/reset', 'reset')->middleware('guest')->name('password.reset');
+	Route::post('/reset', 'sendEmail')->middleware('guest')->name('password.send.email');
+	Route::get('/new-password/{token}', 'newPassword')->middleware('guest')->name('password.new');
+	Route::post('/new-password/{token}', 'resetPassword')->name('password.set.new');
+	Route::get('/update', 'confirmation')->middleware('guest')->name('password.confirmation');
+});
