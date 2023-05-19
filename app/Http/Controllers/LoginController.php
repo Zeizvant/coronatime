@@ -22,9 +22,11 @@ class LoginController extends Controller
 		} else {
 			auth()->attempt(['username' => $username, 'password' => $request->password], $remember = $request->remember);
 		}
-
-		if (auth()->check()) {
+		if (auth()->check() and auth()->user()->is_email_verified == true) {
 			return redirect()->route('index');
+		} elseif (auth()->check() and auth()->user()->is_email_verified == false) {
+			auth()->logout();
+			return redirect()->route('verification.notice');
 		}
 
 		return back()->withErrors(['password' => 'invalid password'])->withInput(['username' => $username]);

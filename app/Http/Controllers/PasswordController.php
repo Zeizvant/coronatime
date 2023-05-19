@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MailRequest;
 use App\Http\Requests\PasswordResetRequest;
-use App\Mail\PasswordResetMail;
+use App\Mail\passwordResetMail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +30,7 @@ class PasswordController extends Controller
 		]);
 		$passwordToken = DB::table('password_reset_tokens')->where('email', $request->email)->first()->token;
 
-		Mail::to($request->email)->send(new PasswordResetMail($passwordToken));
+		Mail::to($request->email)->send(new passwordResetMail($passwordToken));
 		return redirect()->route('verification.notice');
 	}
 

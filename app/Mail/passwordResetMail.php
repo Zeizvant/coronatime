@@ -38,7 +38,7 @@ class passwordResetMail extends Mailable
 	public function content(): Content
 	{
 		return new Content(
-			markdown: 'emails.PasswordResetMail',
+			markdown: 'emails.passwordResetMail',
 		);
 	}
 
@@ -54,6 +54,6 @@ class passwordResetMail extends Mailable
 
 	public function build()
 	{
-		return $this->markdown('emails.PasswordResetMail');
+		return $this->markdown('emails.passwordResetMail');
 	}
 }
