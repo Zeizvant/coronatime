@@ -1,5 +1,5 @@
 @props(['confirmed', 'recovered', 'deaths', 'countries'])
-<table class="md:w-full table-auto box-border md:relative absolute w-screen left-0 md:left-auto">
+<table class="md:w-full table-auto box-border md:relative absolute w-screen left-0 md:left-auto overflow-x-hidden">
     <x-table-header></x-table-header>
     <tbody class="text-xs md:text-sm font-normal" >
     <tr class="h-14">
