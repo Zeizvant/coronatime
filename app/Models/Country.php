@@ -14,7 +14,7 @@ class Country extends Model
 
 	public $translatable = ['name'];
 
-	protected $guarded = [];
+	protected $guarded = ['id'];
 
 	public function country()
 	{
