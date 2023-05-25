@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Mail\emailVerification;
-use App\Mail\passwordResetMail;
+use App\Mail\EmailVerification;
+use App\Mail\PasswordResetMail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;

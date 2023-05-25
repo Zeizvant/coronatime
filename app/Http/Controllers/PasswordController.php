@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MailRequest;
 use App\Http\Requests\PasswordResetRequest;
-use App\Mail\passwordResetMail;
+use App\Mail\PasswordResetMail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;

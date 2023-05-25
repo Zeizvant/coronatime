@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\emailVerification;
+use App\Mail\EmailVerification;
 use App\Models\User;
 use App\Models\UserVerify;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +21,7 @@ class RegisterController extends Controller
 			'token'   => $token,
 		]);
 
-		Mail::to($request->email)->send(new emailVerification($token));
+		Mail::to($request->email)->send(new EmailVerification($token));
 		return redirect()->route('verification.notice');
 	}
 }
