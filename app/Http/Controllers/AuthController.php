@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
 	public function verify(UserVerify $users_verify): RedirectResponse|View
 	{
-		if (!is_null($users_verify)) {
+		if (!is_null($users_verify->user)) {
 			$user = $users_verify->user;
 
 			if (!$user->is_email_verified) {
@@ -19,8 +19,6 @@ class AuthController extends Controller
 				$users_verify->user->email_verified_at = Carbon::now()->timestamp;
 				$users_verify->user->save();
 			}
-		} else {
-			abort(404);
 		}
 
 		return redirect()->route('verification.confirmation');

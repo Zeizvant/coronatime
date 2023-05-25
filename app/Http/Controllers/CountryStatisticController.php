@@ -3,26 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\CountryStatistic;
+use App\Services\CountryService;
 use Illuminate\View\View;
 
 class CountryStatisticController extends Controller
 {
 	public function country(): View
 	{
-		return view('country-landing', [
-			'confirmed' => CountryStatistic::all()->sum('confirmed'),
-			'recovered' => CountryStatistic::all()->sum('recovered'),
-			'deaths'    => CountryStatistic::all()->sum('deaths'),
-			'countries' => CountryStatistic::with('countryName')->get(),
-		]);
+		$data = CountryService::getCountryStatistics();
+		$data['countries'] = CountryStatistic::with('countryName')->get();
+		return view('country-landing', $data);
 	}
 
 	public function index(): View
 	{
-		return view('landing', [
-			'confirmed' => CountryStatistic::all()->sum('confirmed'),
-			'recovered' => CountryStatistic::all()->sum('recovered'),
-			'deaths'    => CountryStatistic::all()->sum('deaths'),
-		]);
+		return view('landing', CountryService::getCountryStatistics());
 	}
 }
