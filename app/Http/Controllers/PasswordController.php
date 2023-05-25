@@ -29,14 +29,14 @@ class PasswordController extends Controller
 		return redirect()->route('verification.notice');
 	}
 
-	public function newPassword($token): View
+	public function newPassword(string $token): View
 	{
 		return view('new-password', [
 			'token' => $token,
 		]);
 	}
 
-	public function resetPassword(PasswordResetRequest $request, $token): RedirectResponse
+	public function resetPassword(PasswordResetRequest $request, string $token): RedirectResponse
 	{
 		$email = DB::table('password_reset_tokens')->where('token', $token)->first()->email;
 		$user = User::all()->where('email', $email)->firstOrFail();

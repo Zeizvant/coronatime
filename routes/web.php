@@ -31,7 +31,7 @@ Route::controller(RegisterController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
 	Route::view('/email/verify', 'sent-confirmation')->name('verification.notice');
-	Route::get('/email/verify/{token}', 'verify')->name('verification.verify');
+	Route::get('/email/verify/{users_verify:token}', 'verify')->name('verification.verify');
 	Route::view('/confirmed', 'confirmed')->name('verification.confirmation');
 	Route::post('/logout', 'logout')->middleware('auth')->name('logout');
 });
