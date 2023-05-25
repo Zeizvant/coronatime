@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CountryStatistic;
+use App\Models\WorldwideStatistic;
 use App\Services\CountryService;
 use Illuminate\View\View;
 
-class CountryStatisticController extends Controller
+class WorldwideStatisticsController extends Controller
 {
 	public function country(): View
 	{
 		$data = CountryService::getCountryStatistics();
-		$data['countries'] = CountryStatistic::with('countryName')->get();
+		$data['countries'] = WorldwideStatistic::with('countryName')->get();
 		return view('country-landing', $data);
 	}
 

@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Country;
-use App\Models\CountryStatistic;
+use App\Models\WorldwideStatistic;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -30,7 +30,7 @@ class FetchCountries extends Command
 	{
 		$countries = Http::get('https://devtest.ge/countries')->json();
 		Country::truncate();
-		CountryStatistic::truncate();
+		WorldwideStatistic::truncate();
 		foreach ($countries as $country) {
 			Country::create([
 				'code' => $country['code'],
@@ -38,7 +38,7 @@ class FetchCountries extends Command
 			]);
 			$stats = Http::post('https://devtest.ge/get-country-statistics', ['code' => $country['code']]);
 			$data = json_decode($stats->body());
-			CountryStatistic::create([
+			WorldwideStatistic::create([
 				'country'      => $data->country,
 				'code'         => $data->code,
 				'confirmed'    => $data->confirmed,

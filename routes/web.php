@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\CountryStatisticController;
+use App\Http\Controllers\WorldwideStatisticsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
@@ -19,7 +19,7 @@ use App\Http\Controllers\PasswordController;
 |
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
-Route::controller(CountryStatisticController::class)->group(function () {
+Route::controller(WorldwideStatisticsController::class)->group(function () {
 	Route::get('/', 'index')->middleware('auth')->name('index');
 	Route::get('/country', 'country')->middleware('auth')->name('landing.country');
 });

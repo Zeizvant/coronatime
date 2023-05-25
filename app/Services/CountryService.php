@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Models\CountryStatistic;
+use App\Models\WorldwideStatistic;
 
 class CountryService
 {
 	public static function getCountryStatistics()
 	{
 		$stats = [
-			'confirmed' => CountryStatistic::all()->sum('confirmed'),
-			'recovered' => CountryStatistic::all()->sum('recovered'),
-			'deaths'    => CountryStatistic::all()->sum('deaths'),
+			'confirmed' => WorldwideStatistic::all()->sum('confirmed'),
+			'recovered' => WorldwideStatistic::all()->sum('recovered'),
+			'deaths'    => WorldwideStatistic::all()->sum('deaths'),
 		];
 		return $stats;
 	}

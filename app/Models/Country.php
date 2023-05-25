@@ -18,6 +18,6 @@ class Country extends Model
 
 	public function country()
 	{
-		return $this->belongsTo(CountryStatistic::class, 'code', 'code');
+		return $this->belongsTo(WorldwideStatistic::class, 'code', 'code');
 	}
 }

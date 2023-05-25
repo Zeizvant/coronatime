@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Country;
-use App\Models\CountryStatistic;
+use App\Models\WorldwideStatistic;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -77,7 +77,7 @@ class CountryTest extends TestCase
 			'name' => '"{""en"": ""Afghanistan"", ""ka"": ""ავღანეთი""}"',
 		]);
 
-		$countryStats = CountryStatistic::create([
+		$countryStats = WorldwideStatistic::create([
 			'code'      => 'AF',
 			'country'   => 'Afghanistan',
 			'confirmed' => 1204,
@@ -95,7 +95,7 @@ class CountryTest extends TestCase
 			'name' => '"{""en"": ""Afghanistan"", ""ka"": ""ავღანეთი""}"',
 		]);
 
-		$countryStats = CountryStatistic::create([
+		$countryStats = WorldwideStatistic::create([
 			'code'      => 'AF',
 			'country'   => 'Afghanistan',
 			'confirmed' => 1204,
