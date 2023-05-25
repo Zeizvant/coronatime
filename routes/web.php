@@ -42,8 +42,8 @@ Route::controller(LoginController::class)->group(function () {
 });
 Route::controller(PasswordController::class)->group(function () {
 	Route::view('/reset', 'reset-password')->middleware('guest')->name('password.reset');
-	Route::post('/reset', 'sendEmail')->middleware('guest')->name('password.send.email');
+	Route::post('/reset', 'sendEmail')->middleware('guest')->name('password.send-email');
 	Route::get('/new-password/{token}', 'newPassword')->middleware('guest')->name('password.new');
-	Route::post('/new-password/{token}', 'resetPassword')->name('password.set.new');
+	Route::post('/new-password/{token}', 'resetPassword')->name('password.set-new');
 	Route::view('/update', 'update-confirmation')->middleware('guest')->name('password.confirmation');
 });

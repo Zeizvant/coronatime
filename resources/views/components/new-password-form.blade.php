@@ -1,4 +1,4 @@
-<form action="{{ route('password.set.new', $token) }}"
+<form action="{{ route('password.set-new', $token) }}"
       method="POST"
       class="flex flex-col justify-between h-[450px] md:justify-start md:gap-14 gap-6 relative">
     @csrf
