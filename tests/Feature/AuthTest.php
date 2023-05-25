@@ -75,12 +75,30 @@ class AuthTest extends TestCase
 	public function test_auth_should_give_us_incorrect_password_error_if_we_provide_incorrect_password()
 	{
 		User::factory()->create([
-			'username' => 'test',
-			'email'    => 'test',
-			'password' => 'test',
+			'username'          => 'test',
+			'email'             => 'test@test.com',
+			'password'          => 'test',
+			'is_email_verified' => 1,
 		]);
 		$response = $this->post('/login', [
 			'username' => 'test',
+			'password' => 'invalid_password',
+		]);
+		$response->assertSessionHasErrors([
+			'password' => 'invalid password',
+		]);
+	}
+
+	public function test_auth_should_give_us_incorrect_password_error_if_we_provide_incorrect_password_during_email_login()
+	{
+		User::factory()->create([
+			'username'          => 'test',
+			'email'             => 'test@test.com',
+			'password'          => 'test',
+			'is_email_verified' => 1,
+		]);
+		$response = $this->post('/login', [
+			'username' => 'test@test.com',
 			'password' => 'invalid_password',
 		]);
 		$response->assertSessionHasErrors([

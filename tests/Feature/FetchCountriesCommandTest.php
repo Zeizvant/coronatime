@@ -20,7 +20,7 @@ class FetchCountriesCommandTest extends TestCase
 	{
 		DB::table('countries');
 		$this->assertDatabaseEmpty('countries');
-		$this->assertDatabaseEmpty('country_statistics');
+		$this->assertDatabaseEmpty('worldwide_statistics');
 		$this->artisan('app:fetch-countries')
 			->assertSuccessful();
 	}
