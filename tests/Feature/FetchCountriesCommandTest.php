@@ -10,7 +10,7 @@ class FetchCountriesCommandTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_fetch_countries_command_should_fetch_countries()
+	public function test_fetch_countries_command_should_fetch_countries_and_country_statistics()
 	{
 		$this->artisan('app:fetch-countries')
 			->assertSuccessful();
@@ -20,6 +20,7 @@ class FetchCountriesCommandTest extends TestCase
 	{
 		DB::table('countries');
 		$this->assertDatabaseEmpty('countries');
+		$this->assertDatabaseEmpty('country_statistics');
 		$this->artisan('app:fetch-countries')
 			->assertSuccessful();
 	}
