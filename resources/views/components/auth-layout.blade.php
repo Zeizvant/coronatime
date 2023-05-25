@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="max-h-screen fixed right-0 top-0">
-            <img class="max-h-screen object-cover w-604 hidden xl:block" src="{{ asset('images/main_img.svg') }}"/>
+            <img class="h-screen object-cover w-604 hidden xl:block" src="{{ asset('images/main_img.svg') }}"/>
         </div>
     </div>
 </body>

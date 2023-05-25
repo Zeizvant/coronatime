@@ -4,7 +4,7 @@ return [
 	'welcome_back'                                => 'კეთილი იყოს თქვენი დაბრუნება',
 	'welcome_back_please_enter_your_details'      => 'კეთილი იყოს თქვენი დაბრუნება! შეიყვანეთ თქვენი დეტალები',
 	'username'                                    => 'მომხმარებლის სახელი',
-	'enter_unique_username_or_email'              => 'შეიყვანეთ მომხმარებლის უნიკალური სახელი ან ელ-ფოსტა',
+	'enter_unique_username_or_email'              => 'შეიყვანეთ სახელი ან ელ-ფოსტა',
 	'password'                                    => 'პაროლი',
 	'fill_in_password'                            => 'შეიყვანეთ პაროლი',
 	'remember_this_device'                        => 'მოწყობილობის დამახსოვრება',
