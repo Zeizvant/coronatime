@@ -6,7 +6,7 @@ use App\Models\WorldwideStatistic;
 
 class CountryService
 {
-	public static function getCountryStatistics()
+	public static function getCountryStatistics(): array
 	{
 		$stats = [
 			'confirmed' => WorldwideStatistic::all()->sum('confirmed'),
