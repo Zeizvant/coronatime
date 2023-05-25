@@ -25,25 +25,25 @@ Route::controller(CountryStatisticController::class)->group(function () {
 });
 
 Route::controller(RegisterController::class)->group(function () {
-	Route::get('/register', 'register')->name('register');
+	Route::view('/register', 'register')->name('register');
 	Route::post('/register', 'store')->name('register.store');
 });
 
 Route::controller(AuthController::class)->group(function () {
-	Route::get('/email/verify', 'verifyEmail')->name('verification.notice');
+	Route::view('/email/verify', 'sent-confirmation')->name('verification.notice');
 	Route::get('/email/verify/{token}', 'verify')->name('verification.verify');
-	Route::get('/confirmed', 'confirmation')->name('verification.confirmation');
+	Route::view('/confirmed', 'confirmed')->name('verification.confirmation');
 	Route::post('/logout', 'logout')->middleware('auth')->name('logout');
 });
 
 Route::controller(LoginController::class)->group(function () {
-	Route::get('/login', 'show')->middleware('guest')->name('login');
+	Route::view('/login', 'login')->middleware('guest')->name('login');
 	Route::post('/login', 'login')->name('auth.login');
 });
 Route::controller(PasswordController::class)->group(function () {
-	Route::get('/reset', 'reset')->middleware('guest')->name('password.reset');
+	Route::view('/reset', 'reset-password')->middleware('guest')->name('password.reset');
 	Route::post('/reset', 'sendEmail')->middleware('guest')->name('password.send.email');
 	Route::get('/new-password/{token}', 'newPassword')->middleware('guest')->name('password.new');
 	Route::post('/new-password/{token}', 'resetPassword')->name('password.set.new');
-	Route::get('/update', 'confirmation')->middleware('guest')->name('password.confirmation');
+	Route::view('/update', 'update-confirmation')->middleware('guest')->name('password.confirmation');
 });

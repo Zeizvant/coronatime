@@ -15,11 +15,6 @@ use Carbon\Carbon;
 
 class PasswordController extends Controller
 {
-	public function reset(): View
-	{
-		return view('reset-password');
-	}
-
 	public function sendEmail(MailRequest $request): RedirectResponse
 	{
 		$token = Str::random(64);
@@ -48,10 +43,5 @@ class PasswordController extends Controller
 		$user->password = $request->password;
 		$user->save();
 		return redirect()->route('password.confirmation');
-	}
-
-	public function confirmation(): View
-	{
-		return view('update-confirmation');
 	}
 }
