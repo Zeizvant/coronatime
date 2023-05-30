@@ -9,15 +9,15 @@ use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-	public function verify(UserVerify $users_verify): RedirectResponse|View
+	public function verify(UserVerify $usersVerify): RedirectResponse|View
 	{
-		if (!is_null($users_verify->user)) {
-			$user = $users_verify->user;
+		if (!is_null($usersVerify->user)) {
+			$user = $usersVerify->user;
 
 			if (!$user->is_email_verified) {
-				$users_verify->user->is_email_verified = 1;
-				$users_verify->user->email_verified_at = Carbon::now()->timestamp;
-				$users_verify->user->save();
+				$$usersVerify->user->is_email_verified = 1;
+				$$usersVerify->user->email_verified_at = Carbon::now()->timestamp;
+				$$usersVerify->user->save();
 			}
 		}
 
