@@ -15,9 +15,9 @@ class AuthController extends Controller
 			$user = $usersVerify->user;
 
 			if (!$user->is_email_verified) {
-				$$usersVerify->user->is_email_verified = 1;
-				$$usersVerify->user->email_verified_at = Carbon::now()->timestamp;
-				$$usersVerify->user->save();
+				$usersVerify->user->is_email_verified = 1;
+				$usersVerify->user->email_verified_at = Carbon::now()->timestamp;
+				$usersVerify->user->save();
 			}
 		}
 
