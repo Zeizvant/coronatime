@@ -19,11 +19,10 @@ use App\Http\Controllers\PasswordController;
 |
 */
 Route::get('/change/{locale}', [LanguageController::class, 'setLocale'])->name('language.change');
-Route::controller(WorldwideStatisticsController::class)->group(function () {
-	Route::get('/', 'index')->middleware('auth')->name('index');
-	Route::get('/country', 'country')->middleware('auth')->name('landing.country');
+Route::group(['controller' => WorldwideStatisticsController::class, 'middleware' => 'auth'], function () {
+	Route::get('/', 'index')->name('index');
+	Route::get('/country', 'country')->name('landing.country');
 });
-
 Route::controller(RegisterController::class)->group(function () {
 	Route::view('/register', 'register')->name('register');
 	Route::post('/register', 'store')->name('register.store');
