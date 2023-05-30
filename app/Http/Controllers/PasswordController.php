@@ -39,7 +39,7 @@ class PasswordController extends Controller
 	public function resetPassword(PasswordResetRequest $request, string $token): RedirectResponse
 	{
 		$email = DB::table('password_reset_tokens')->where('token', $token)->first()->email;
-		$user = User::all()->where('email', $email)->firstOrFail();
+		$user = User::where('email', $email)->firstOrFail();
 		$user->password = $request->password;
 		$user->save();
 		return redirect()->route('password.confirmation');

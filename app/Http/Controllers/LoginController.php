@@ -14,7 +14,7 @@ class LoginController extends Controller
 		$credential = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
 		auth()->validate([$credential => $username, 'password' => $request->password]);
-		if (User::all()->where($credential, $username)->first()->is_email_verified == true) {
+		if (User::where($credential, $username)->first()->is_email_verified == true) {
 			auth()->attempt([$credential => $username, 'password' => $request->password], $remember = $request->remember);
 			if (auth()->check()) {
 				return redirect()->route('index');
