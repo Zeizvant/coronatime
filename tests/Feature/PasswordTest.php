@@ -18,20 +18,20 @@ class PasswordTest extends TestCase
 
 	public function test_password_reset_page_is_accessible()
 	{
-		$response = $this->get('/reset');
+		$response = $this->get(route('password.reset'));
 		$response->assertViewIs('reset-password');
 		$response->assertSuccessful();
 	}
 
 	public function test_password_should_give_us_email_error_if_we_wont_provide_email_input()
 	{
-		$response = $this->post('/reset');
+		$response = $this->post(route('password.send-email'));
 		$response->assertSessionHasErrors('email');
 	}
 
 	public function test_password_should_give_us_email_invalid_error_if_our_provided_email_does_not_exists()
 	{
-		$response = $this->post('/reset', ['email' => 'test']);
+		$response = $this->post(route('password.send-email'), ['email' => 'test']);
 		$response->assertSessionHasErrors([
 			'email' => 'The selected email is invalid.',
 		]);
@@ -50,7 +50,7 @@ class PasswordTest extends TestCase
 			'token'      => $token,
 			'created_at' => Carbon::now(),
 		]);
-		$response = $this->post('/reset', ['email' => $email]);
+		$response = $this->post(route('password.send-email'), ['email' => $email]);
 		Mail::assertSent(passwordResetMail::class, function ($mail) {
 			return $mail->hasSubject('Password Reset Mail');
 		});
@@ -59,14 +59,14 @@ class PasswordTest extends TestCase
 
 	public function test_password_new_password_page_is_accessible()
 	{
-		$response = $this->get('/new-password/test');
+		$response = $this->get(route('password.new', ['test']));
 		$response->assertViewIs('new-password');
 		$response->assertSuccessful();
 	}
 
 	public function test_password_should_give_us_password_error_if_we_wont_provide_password_inputs()
 	{
-		$response = $this->post('/new-password/test');
+		$response = $this->post(route('password.new', ['test']));
 		$response->assertSessionHasErrors([
 			'password',
 			'password_confirmation',
@@ -75,7 +75,7 @@ class PasswordTest extends TestCase
 
 	public function test_password_should_give_us_password_length_error_if_we_provide_two_or_less_symbols()
 	{
-		$response = $this->post('/new-password/test', [
+		$response = $this->post(route('password.new', ['test']), [
 			'password'              => 'te',
 			'password_confirmation' => 'te',
 		]);
@@ -86,7 +86,7 @@ class PasswordTest extends TestCase
 
 	public function test_password_should_give_us_password_confirmation_error_if_we_wont_provide_same_values()
 	{
-		$response = $this->post('/new-password/test', [
+		$response = $this->post(route('password.new', ['test']), [
 			'password'              => 'test',
 			'password_confirmation' => 'test1',
 		]);
@@ -109,7 +109,7 @@ class PasswordTest extends TestCase
 			'created_at' => Carbon::now(),
 		]);
 		$password = 'test';
-		$response = $this->post('/new-password/' . $token, [
+		$response = $this->post(route('password.set-new', [$token]), [
 			'password'              => $password,
 			'password_confirmation' => $password,
 			'token'                 => $token,
@@ -127,8 +127,8 @@ class PasswordTest extends TestCase
 			'password'          => 'test',
 			'is_email_verified' => 1,
 		]);
-		$response = $this->post('/reset', ['email' => $email]);
-		$response->assertRedirect('/email/verify');
+		$response = $this->post(route('password.send-email'), ['email' => $email]);
+		$response->assertRedirect(route('verification.notice'));
 	}
 
 	public function test_password_should_redirect_to_password_confirmation_page_if_password_reseted_successfully()
@@ -143,18 +143,18 @@ class PasswordTest extends TestCase
 			'token'      => $token,
 			'created_at' => Carbon::now(),
 		]);
-		$response = $this->post('/new-password/' . $token, [
+		$response = $this->post(route('password.set-new', [$token]), [
 			'password'              => 'test',
 			'password_confirmation' => 'test',
 			'token'                 => $token,
 		]);
 
-		$response->assertRedirect('/update');
+		$response->assertRedirect(route('password.confirmation'));
 	}
 
 	public function test_password_update_page_is_accessible()
 	{
-		$response = $this->get('/update');
+		$response = $this->get(route('password.confirmation'));
 		$response->assertSuccessful();
 		$response->assertViewIs('update-confirmation');
 	}

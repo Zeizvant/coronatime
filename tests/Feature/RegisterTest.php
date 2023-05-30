@@ -15,14 +15,14 @@ class RegisterTest extends TestCase
 
 	public function test_register_page_is_accessible()
 	{
-		$response = $this->get('/register');
+		$response = $this->get(route('register'));
 		$response->assertSuccessful();
 		$response->assertViewIs('register');
 	}
 
 	public function test_register_should_give_us_errors_if_inputs_are_not_provided()
 	{
-		$response = $this->post('/register');
+		$response = $this->post(route('register.store'));
 		$response->assertSessionHasErrors([
 			'username',
 			'email',
@@ -33,7 +33,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_username_error_if_we_wont_provide_username_input()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'email'                 => 'test@test.com',
 			'password'              => 'test',
 			'password_confirmation' => 'test',
@@ -46,7 +46,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_username_length_error_if_we_provide_2_or_less_symbols()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'              => 'te',
 			'email'                 => 'test@test.com',
 			'password'              => 'test',
@@ -63,7 +63,7 @@ class RegisterTest extends TestCase
 			'username' => 'test',
 		]);
 
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'              => 'test',
 			'email'                 => 'test@test.com',
 			'password'              => 'test',
@@ -76,7 +76,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_email_error_if_we_wont_provide_email_input()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'password'                 => 'test',
 			'password_confirmation'    => 'test',
@@ -89,7 +89,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_email_validation_error_if_we_wont_provide_valid_email_format()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'email',
 			'password'                 => 'test',
@@ -107,7 +107,7 @@ class RegisterTest extends TestCase
 			'email' => 'test@test.com',
 		]);
 
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'              => 'test',
 			'email'                 => 'test@test.com',
 			'password'              => 'test',
@@ -120,7 +120,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_password_error_if_we_wont_provide_password_input()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password_confirmation'    => 'test',
@@ -133,7 +133,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_password_length_error_if_we_wont_provide_3_or_more_symbols()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password'                 => 'te',
@@ -147,7 +147,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_password_confirmation_error_if_we_wont_provide_password_confirmation_input()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password'                 => 'test',
@@ -160,7 +160,7 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_give_us_password_confirmation_does_not_match_error_if_we_provide_different_passwords()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password'                 => 'test',
@@ -174,26 +174,26 @@ class RegisterTest extends TestCase
 
 	public function test_register_should_redirect_to_email_verification_page_after_successfull_registration()
 	{
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password'                 => 'test',
 			'password_confirmation'    => 'test',
 		]);
-		$response->assertRedirect('/email/verify');
+		$response->assertRedirect(route('verification.notice'));
 	}
 
 	public function test_register_should_send_email_to_user_after_successfull_registration()
 	{
 		Mail::fake();
 		$token = Str::random(64);
-		$response = $this->post('/register', [
+		$response = $this->post(route('register.store'), [
 			'username'                 => 'test',
 			'email'                    => 'test@test.com',
 			'password'                 => 'test',
 			'password_confirmation'    => 'test',
 		]);
-		$response->assertRedirect('/email/verify');
+		$response->assertRedirect(route('verification.notice'));
 		Mail::assertSent(emailVerification::class);
 	}
 }

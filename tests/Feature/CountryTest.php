@@ -21,7 +21,7 @@ class CountryTest extends TestCase
 			'is_email_verified' => 1,
 		]);
 		auth()->attempt(['username' => 'test', 'password' => 'test']);
-		$response = $this->get('/');
+		$response = $this->get(route('index'));
 		$response->assertSuccessful();
 	}
 
@@ -34,7 +34,7 @@ class CountryTest extends TestCase
 			'is_email_verified' => 1,
 		]);
 		auth()->attempt(['username' => 'test', 'password' => 'test']);
-		$response = $this->get('/country');
+		$response = $this->get(route('landing.country'));
 		$response->assertSuccessful();
 	}
 
@@ -46,12 +46,12 @@ class CountryTest extends TestCase
 			'password'          => 'test',
 			'is_email_verified' => 0,
 		]);
-		$this->post('/login', [
+		$this->post(route('auth.login'), [
 			'username' => 'test',
 			'password' => 'test',
 		]);
-		$response = $this->get('/');
-		$response->assertRedirect('/login');
+		$response = $this->get(route('index'));
+		$response->assertRedirect(route('login'));
 	}
 
 	public function test_country_redirects_to_login_page_if_we_try_to_access_with_unverified_user()
@@ -62,12 +62,12 @@ class CountryTest extends TestCase
 			'password'          => 'test',
 			'is_email_verified' => 0,
 		]);
-		$this->post('/login', [
+		$this->post(route('auth.login'), [
 			'username' => 'test',
 			'password' => 'test',
 		]);
-		$response = $this->get('/country');
-		$response->assertRedirect('/login');
+		$response = $this->get(route('landing.country'));
+		$response->assertRedirect(route('login'));
 	}
 
 	public function test_country_model_should_return_country_statistics_relation_with_country_property()
