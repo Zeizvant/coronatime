@@ -40,8 +40,7 @@ class PasswordController extends Controller
 	{
 		$email = DB::table('password_reset_tokens')->where('token', $token)->first()->email;
 		$user = User::where('email', $email)->firstOrFail();
-		$user->password = $request->password;
-		$user->save();
+		$user->update($request->validated());
 		return redirect()->route('password.confirmation');
 	}
 }
