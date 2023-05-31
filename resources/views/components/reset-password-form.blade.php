@@ -1,4 +1,4 @@
-<form action="{{ route('password.send.email') }}"
+<form action="{{ route('password.send-email') }}"
       method="POST"
       class="flex flex-col justify-between md:justify-start md:gap-14 h-[500px] gap-6 relative">
     @csrf

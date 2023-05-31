@@ -8,16 +8,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class passwordResetMail extends Mailable
+class emailVerification extends Mailable
 {
 	use Queueable, SerializesModels;
 
 	/**
 	 * Create a new message instance.
 	 */
-	public $token;
-
-	public function __construct($token)
+	public function __construct(public string $token)
 	{
 		$this->token = $token;
 	}
@@ -28,7 +26,7 @@ class passwordResetMail extends Mailable
 	public function envelope(): Envelope
 	{
 		return new Envelope(
-			subject: 'Password Reset Mail',
+			subject: 'Email Verification',
 		);
 	}
 
@@ -38,7 +36,7 @@ class passwordResetMail extends Mailable
 	public function content(): Content
 	{
 		return new Content(
-			markdown: 'emails.passwordResetMail',
+			markdown: 'emails.emailVerification',
 		);
 	}
 
@@ -54,6 +52,6 @@ class passwordResetMail extends Mailable
 
 	public function build()
 	{
-		return $this->markdown('emails.passwordResetMail');
+		return $this->markdown('emails.emailVerification');
 	}
 }

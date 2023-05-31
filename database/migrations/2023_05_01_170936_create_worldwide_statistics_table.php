@@ -10,7 +10,7 @@ return new class extends Migration {
 	 */
 	public function up(): void
 	{
-		Schema::create('country_statistics', function (Blueprint $table) {
+		Schema::create('worldwide_statistics', function (Blueprint $table) {
 			$table->id();
 			$table->string('country');
 			$table->string('code');

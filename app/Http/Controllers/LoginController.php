@@ -3,32 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-	public function show(): View
-	{
-		return view('login');
-	}
-
 	public function login(LoginRequest $request): RedirectResponse
 	{
 		$username = $request->username;
+		$credential = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-		if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
-			auth()->attempt(['email' => $username, 'password' => $request->password], $remember = $request->remember);
+		auth()->validate([$credential => $username, 'password' => $request->password]);
+		if (User::where($credential, $username)->first()->is_email_verified == true) {
+			auth()->attempt([$credential => $username, 'password' => $request->password], $remember = $request->remember);
+			if (auth()->check()) {
+				return redirect()->route('index');
+			} else {
+				return back()->withErrors(['password' => 'invalid password'])->withInput(['username' => $username]);
+			}
 		} else {
-			auth()->attempt(['username' => $username, 'password' => $request->password], $remember = $request->remember);
-		}
-		if (auth()->check() and auth()->user()->is_email_verified == true) {
-			return redirect()->route('index');
-		} elseif (auth()->check() and auth()->user()->is_email_verified == false) {
-			auth()->logout();
 			return redirect()->route('verification.notice');
 		}
-
-		return back()->withErrors(['password' => 'invalid password'])->withInput(['username' => $username]);
 	}
 }
